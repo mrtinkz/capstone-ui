@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Automotive Retail E-commerce</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="home.html">Vehicles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="dashboard-link" href="about.html">Dashboard</a>
+                </li>
+            </ul>
+            <div class="navbar-text">
+                <a href="login.html" class="btn btn-primary ms-3" id="login-link">Login</a>
+                <span id="user-icon" class="hidden">&#x1F464;</span>
+            </div>
+        </div>
+    </div>
+</nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Check if token exists in session storage
+        const token = sessionStorage.getItem('token');
+
+        // Show or hide elements based on token
+        if (token) {
+            console.log(token);
+            $('#login-link').hide();
+            $('#user-icon').show();
+            $('#dashboard-link').show();
+        }
+    });
+</script>

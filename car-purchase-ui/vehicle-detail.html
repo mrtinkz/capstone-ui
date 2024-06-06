@@ -1,0 +1,592 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Automotive Retail E-commerce</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+    <meta name="description" content="">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#fafafa">
+
+    <style>
+        .header {
+            font-size: 24px;
+            /* Adjust this value to your desired size */
+            font-weight: bold;
+            padding-bottom: 20px;
+            /* Add bottom padding */
+        }
+        .content {
+            padding-bottom: 20px;
+            /* Add bottom padding */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Add your site or application content here -->
+    <header>
+        <!-- <div id="navbar-container"></div> -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Automotive Retail E-commerce</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Vehicles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="dashboard-link" href="dashboard.html">Dashboard</a>
+                        </li>
+                    </ul>
+                    <div class="navbar-text">
+                        <a href="login.html" class="btn btn-primary ms-3" id="login-link">Login</a>
+                        <i id="user-icon" class="hidden bi bi-user"></i>
+                        <a href="#" class="btn btn-primary ms-3" id="logout-link">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <br />
+        <div class="container">
+            <h1>Buy Vehicle Journey</h1>
+            <div class="ui two column grid">
+                <div class="column">
+                    <div class="ui fluid vertical steps">
+                        <div class="active step">
+                            <i class="truck icon"></i>
+                            <div class="content">
+                                <div class="title">View Vehicle</div>
+                                <div class="description">View vehicle details</div>
+                            </div>
+                        </div>
+                        <div class="disabled step">
+                            <i class="truck icon"></i>
+                            <div class="content">
+                                <div class="title">Schedule Test Drive</div>
+                                <div class="description">Test Drive</div>
+                            </div>
+                        </div>
+                        <div class="disabled step">
+                            <i class="wrench icon"></i>
+                            <div class="content">
+                                <div class="title">Configure</div>
+                                <div class="description">Customize your vehicle</div>
+                            </div>
+                        </div>
+                        <div class="disabled step">
+                            <i class="shopping cart icon"></i>
+                            <div class="content">
+                                <div class="title">Verify Cart</div>
+                                <div class="description">Verify your vehicle</div>
+                            </div>
+                        </div>
+                        <div class="disabled step">
+                            <i class="money bill alternate icon"></i>
+                            <div class="content">
+                                <div class="title">Finance</div>
+                                <div class="description">Apply for Financing</div>
+                            </div>
+                        </div>
+                        <div class="disabled step">
+                            <i class="dollar icon"></i>
+                            <div class="content">
+                                <div class="title">Pricing Summary</div>
+                                <div class="description">Verify Pricing</div>
+                            </div>
+                        </div>
+                        <div class="disabled step">
+                            <i class="credit card icon"></i>
+                            <div class="content">
+                                <div class="title">Checkout</div>
+                                <div class="description">Proceed to checkout</div>
+                            </div>
+                        </div>
+                        <div class="disabled step">
+                            <i class="checkmark icon"></i>
+                            <div class="content">
+                                <div class="title">Order Confirmation</div>
+                                <div class="description">Confirm your order</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <!-- Vehicle Details Content -->
+                    <div class="ui raised segment content vehicle-details-content">
+                        <!-- Vehicle Details Content Goes Here -->
+                        <div class="header">Vehicle Details</div>
+                        <!-- Vehicle details content -->
+                        <div class="content">
+                            <h4 class="ui sub header">Make</h4>
+                            <div class="ui small feed make-container"></div>
+                            <h4 class="ui sub header">Model</h4>
+                            <div class="ui small feed model-container"></div>
+                            <h4 class="ui sub header">Model Year</h4>
+                            <div class="ui small feed model-year-container"></div>
+                            <!-- Add more attributes as needed -->
+                        </div>
+                        <a class="ui button primary-btn" href="#">Next</a>
+                    </div>
+
+                    <!-- Test Drive Content -->
+                    <div class="ui raised segment content schedule-drive-content" style="display: none;">
+                        <!-- Test Drive Content Goes Here -->
+                        <div class="header">Schedule Test Drive</div>
+                        <!-- Test drive content -->
+                        <div class="content">
+                            <div class="field">
+                                <label>Date:</label>
+                                <span>2024-06-03</span>
+                            </div>
+                        </div>
+                        <a class="ui button primary-btn" href="#">Schedule</a>
+                    </div>
+
+                    <!-- Configure Content -->
+                    <div class="ui raised segment content configure-content" style="display: none;">
+                        <!-- Configure Content Goes Here -->
+                        <div class="header">Configure Vehicle</div>
+                        <div class="content">
+                            <div class="field">
+                                <label>Estimated Mileage:</label>
+                                <span>25 miles</span>
+                            </div>
+                            <div class="field">
+                                <label>Engine:</label>
+                                <span>ELECTRIC</span>
+                            </div>
+                            <div class="field">
+                                <label>Drivetrain:</label>
+                                <span>FRONT_WHEEL_DRIVE</span>
+                            </div>
+                            <div class="field">
+                                <label>Transmission:</label>
+                                <span>AUTOMATIC</span>
+                            </div>
+                            <div class="field">
+                                <label>Trim:</label>
+                                <span>TRIM_ONE</span>
+                            </div>
+                            <div class="field">
+                                <label>Color:</label>
+                                <span>BLACK</span>
+                            </div>
+                            <!-- Add more fields as needed -->
+                            <!-- Add more fields as needed -->
+                            <div class="field">
+                                <input type="checkbox" id="configuration-checkbox" />
+                                <label for="configuration-checkbox">Confirm configuration</label>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <div class="field">
+                                <label>Estimated Mileage:</label>
+                                <span>25 miles</span>
+                            </div>
+                            <div class="field">
+                                <label>Engine:</label>
+                                <span>GASOLINE</span>
+                            </div>
+                            <div class="field">
+                                <label>Drivetrain:</label>
+                                <span>FRONT_WHEEL_DRIVE</span>
+                            </div>
+                            <div class="field">
+                                <label>Transmission:</label>
+                                <span>MANUAL</span>
+                            </div>
+                            <div class="field">
+                                <label>Trim:</label>
+                                <span>TRIM_ONE</span>
+                            </div>
+                            <div class="field">
+                                <label>Color:</label>
+                                <span>BLACK</span>
+                            </div>
+                            <!-- Add more fields as needed -->
+                            <!-- Add more fields as needed -->
+                            <div class="field">
+                                <input type="checkbox" id="configuration-checkbox" />
+                                <label for="configuration-checkbox">Confirm configuration</label>
+                            </div>
+                        </div>
+                        <a class="ui button primary-btn" href="#">Select</a>
+                    </div>
+
+                    <!-- Cart Content -->
+                    <div class="ui raised segment content accessories-content" style="display: none;">
+                        <!-- Cart Content Goes Here -->
+                        <div class="header">Verify Cart</div>
+                        <div class="content">
+                            <h4 class="ui sub header">Make</h4>
+                            <div class="ui small feed make-container"></div>
+                            <h4 class="ui sub header">Model</h4>
+                            <div class="ui small feed model-container"></div>
+                            <h4 class="ui sub header">Model Year</h4>
+                            <div class="ui small feed model-year-container"></div>
+                            <!-- Add more attributes as needed -->
+                        </div>
+                        <a class="ui button primary-btn" href="#">Next</a>
+                    </div>
+
+                    <!-- Finance Content -->
+                    <div class="ui raised segment content finance-content" style="display: none;">
+                        <!-- Finance Content Goes Here -->
+                        <div class="header">Finance</div>
+                        <div class="content">
+                            <div class="field">
+                                <label>Provider: Car Loan, Llc</label>
+                                <span>string</span>
+                            </div>
+                            <div class="field">
+                                <label>Interest Rate:</label>
+                                <span>2%</span>
+                            </div>
+                            <div class="field">
+                                <label>Loan Term:</label>
+                                <span>60 months</span>
+                            </div>
+                            <div class="field">
+                                <label>Down Payment:</label>
+                                <span>$1000.00</span>
+                            </div>
+                        </div>
+                        <a class="ui button primary-btn" href="#">Accept</a>
+                    </div>
+                    <!-- Pricing Content -->
+                    <div class="ui raised segment content pricing-content" style="display: none;">
+                        <!-- Pricing Content Goes Here -->
+                        <div class="header">Pricing Summary</div>
+                        <div class="content">
+                            <div class="field">
+                                <label>MSRP:</label>
+                                <span>$30,000</span>
+                            </div>
+                            <div class="field">
+                                <label>Taxes & Fees:</label>
+                                <span>$2,700</span>
+                            </div>
+                            <div class="field">
+                                <label>Incentives:</label>
+                                <span>-$1,500</span>
+                            </div>
+                            <div class="field">
+                                <label>Trade-In Estimate:</label>
+                                <span>-$8,000</span>
+                            </div>
+                            <div class="field">
+                                <label>Subscription Services:</label>
+                                <span>$300</span>
+                            </div>
+                            <div class="field">
+                                <label>Protection Plan:</label>
+                                <span>$1,200</span>
+                            </div>
+                            <div class="field">
+                                <label>Total Price:</label>
+                                <span>$25,700</span>
+                            </div>
+                        </div>
+                        <a class="ui button primary-btn" href="#">Next</a>
+                    </div>
+
+                    <!-- Payment Content -->
+                    <div class="ui raised segment content payment-content" style="display: none;">
+                        <!-- Payment Content Goes Here -->
+                        <div class="header">Checkout</div>
+                        <form class="ui form" onsubmit="return validateForm()">
+                            <div class="field">
+                                <label>Payment Type:</label>
+                                <select name="paymentType">
+                                    <option value="CREDIT_CARD" selected>CREDIT_CARD</option>
+                                    <!-- Add more payment type options as needed -->
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Payment Amount:</label>
+                                <input type="number" name="paymentAmount" value="1500" placeholder="$1500" required
+                                    readonly>
+                            </div>
+                            <div class="field">
+                                <label>Payment Date:</label>
+                                <input type="date" name="paymentDate" value="2024-06-03" required>
+                            </div>
+                            <div class="field">
+                                <label>Card Type:</label>
+                                <input type="text" name="cardType" value="VISA" placeholder="Enter the card type"
+                                    required>
+                            </div>
+                            <div class="field">
+                                <label>Card Number:</label>
+                                <input type="text" name="cardNumber" placeholder="XXXX-XXXX-XXXX-1234" required>
+                            </div>
+                            <div class="field">
+                                <label>Card Holder Name:</label>
+                                <input type="text" name="cardHolderName" placeholder="Enter the card holder name"
+                                    required>
+                            </div>
+                            <div class="field">
+                                <label>Card Expiration Date:</label>
+                                <input type="date" name="cardExpirationDate" value="2024-06-03"
+                                    placeholder="Enter the card expiration date" required>
+                            </div>
+                            <button class="ui button primary-btn" type="submit">Submit</button>
+                        </form>
+                    </div>
+
+                    <!-- Order Confirmation Content -->
+                    <div class="ui raised segment content order-confirmation-content" style="display: none;">
+                        <!-- Order Confirmation Content Goes Here -->
+                        <div class="header">Order Confirmation</div>
+                        <div class="content">
+                            <div class="field">
+                                <label>Order ID:</label>
+                                <span>100500</span>
+                            </div>
+                            <div class="field">
+                                <label>Shopper ID:</label>
+                                <span>123456</span>
+                            </div>
+                            <div class="field">
+                                <label>Status:</label>
+                                <span>PENDING</span>
+                            </div>
+                            <div class="field">
+                                <label>Scheduled Delivery Date:</label>
+                                <span>2024-06-03</span>
+                            </div>
+                            <div class="field">
+                                <label>Vehicle ID:</label>
+                                <span>789012</span>
+                            </div>
+                            <div class="field">
+                                <label>Dealer ID:</label>
+                                <span>654321</span>
+                            </div>
+
+                            <div class="icon">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M15.5 3.5C15.5 2.57146 16.0715 1.98107 16.8298 2.08298V28.4698C17.6002 28.5817 18.5 28.0771 18.9999 27.3999L18.7604 23.4462L17.2698 23.9524L17.25 21.8745L17.2197 21.9039L16.7494 21.9547L15.2996 21.9289L16.1517 19.0889L15.9497 16.2422L13.2599 19.4737L15.51 15.53L14.6999 12.9424L14.1399 11.5C13.5798 10.0575 12.4298 9 11.3198 9H9.68802C8.5702 9 7.43978 10.0575 6.86014 11.5L6.29582 12.9424L4.78999 15.53L6.05255 19.4737L4.95004 16.2422L4.62525 19.0889L3.07956 21.9289L2.22983 21.9547L2.15437 21.9039L2.13687 21.8745L1.73958 23.9524L0.701553 23.4462L1.25657 27.3999C1.6999 28.0771 2.60002 28.5817 3.37695 28.4698V2.08298C4.10297 1.98107 4.62303 2.57146 4.62303 3.5H15.5Z"
+                                        fill="#1E8E43" />
+                                </svg>
+                            </div>
+                            <div class="field">
+                                <i class="icon check"></i>
+                                <span>Thank you for your order!</span>
+                            </div>
+                        </div>
+                        <button class="ui button primary-btn" onclick="redirectToDashboard()">Manage Order</button>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<URL>" target="_blank"
+                            class="ui button">Share on Facebook</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="fixed-bottom">
+        <div class="container text-right">
+            <p>© 2024 Automotive Retail E-commerce. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function redirectToDashboard() {
+            window.location.href = "dashboard.html";
+        }
+    </script>
+
+    <script>
+        function validateForm() {
+            var x = document.forms[0].getElementsByClassName("ui form");
+            if (x[0].checkValidity() === false) {
+                x[0].reportValidity();
+                return false;
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Check if token exists in session storage
+            const token = sessionStorage.getItem('token');
+            updateUI(token);
+
+            // Logout handler
+            $('#logout-link').click(function (e) {
+                e.preventDefault();
+                sessionStorage.removeItem('token');
+                window.location.href = "index.html";
+            });
+        });
+
+        // Function to update UI based on authentication state
+        function updateUI(token) {
+            if (token) {
+                console.log(token);
+                $('#login-link').hide();
+                $('#user-icon').show();
+                $('#dashboard-link').show();
+                $('#logout-link').show();
+            } else {
+                $('#login-link').show();
+                $('#user-icon').hide();
+                $('#dashboard-link').hide();
+                $('#logout-link').hide();
+            }
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            const vehicleId = sessionStorage.getItem('currentVehicleId');
+            const SEARCH_ENDPOINT = 'http://localhost:8080/api/vehicles';
+            const BEARER_TOKEN = sessionStorage.getItem('token');
+
+            $.ajax({
+                url: `${SEARCH_ENDPOINT}/${vehicleId}`,
+                type: 'GET',
+                dataType: 'json',
+                headers: {
+                    Authorization: `Bearer ${BEARER_TOKEN}`
+                },
+                success: function (response) {
+                    const vehicle = response;
+
+                    const makeHtml = `<div class="event">
+        <div class="content">
+          <div class="summary">
+             ${vehicle.make}
+          </div>
+        </div>
+      </div>`;
+                    $('.make-container').html(makeHtml);
+
+                    const modelHtml = `<div class="event">
+        <div class="content">
+          <div class="summary">
+             ${vehicle.model}
+          </div>
+        </div>
+      </div>`;
+                    $('.model-container').html(modelHtml);
+
+                    const modelYearHtml = `<div class="event">
+        <div class="content">
+          <div class="summary">
+             ${vehicle.modelYear}
+          </div>
+        </div>
+      </div>`;
+                    $('.model-year-container').html(modelYearHtml);
+
+                    // Add more attributes as needed
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                }
+            });
+        });
+
+
+        $(document).ready(function () {
+            // Define the updateContent function
+            const updateContent = (index) => {
+                // Hide all content divs
+                $('.configure-content').hide();
+                $('.schedule-drive-content').hide();
+                $('.accessories-content').hide();
+                $('.finance-content').hide();
+                $('.pricing-content').hide();
+                $('.payment-content').hide();
+                $('.order-confirmation-content').hide();
+                $('.vehicle-details-content').hide();
+
+                // Show the current step content based on index
+                console.log(index);
+                switch (index) {
+                    case 1:
+                        $('.schedule-drive-content').show();
+                        break;
+                    case 2:
+                        $('.configure-content').show();
+                        break;
+                    case 3:
+                        $('.accessories-content').show();
+                        break;
+                    case 4:
+                        $('.finance-content').show();
+                        break;
+                    case 5:
+                        $('.pricing-content').show();
+                        break;
+                    case 6:
+                        $('.payment-content').show();
+                        break;
+                    case 7:
+                        $('.order-confirmation-content').show();
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            // Global variable to track the current step index
+            let currentStep = 0;
+
+            // Event listener for the Configure button
+            $('.primary-btn').on('click', function (e) {
+                e.preventDefault();
+
+                // Mark the current step as completed
+                $(this).parents('.column').siblings('.column').find('.ui.fluid.vertical.steps .step').eq(currentStep).addClass('completed');
+
+                // Update the content for the current step
+                updateContent(currentStep);
+
+                // Move to the next step
+                $(this).parents('.column').find('.ui.fluid.vertical.steps .step').eq(currentStep + 1).addClass('active').removeClass('disabled');
+
+                // Increment the currentStep
+                currentStep++;
+
+                // Update the content for the next step
+                updateContent(currentStep);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

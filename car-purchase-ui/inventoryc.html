@@ -1,0 +1,283 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Automotive Retail E-commerce</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+    <meta name="description" content="">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+    <!-- Add your site or application content here -->
+    <header>
+        <!-- <div id="navbar-container"></div> -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Automotive Retail E-commerce</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Vehicles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="dashboard-link" href="dashboard.html">Dashboard</a>
+                        </li>
+                    </ul>
+                    <div class="navbar-text">
+                        <a href="login.html" class="btn btn-primary ms-3" id="login-link">Login</a>
+                        <i id="user-icon" class="hidden bi bi-user"></i>
+                        <a href="#" class="btn btn-primary ms-3" id="logout-link">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="text-center my-5">
+            <h1>Find the perfect vehicle for you</h1>
+            <!-- Search form -->
+            <form class="ui form">
+                <div class="field">
+                    <label>Search</label>
+                    <input type="text" id="search-input" placeholder="Search vehicles...">
+                </div>
+                <button type="submit" id="search-button" class="ui button">Search</button>
+            </form>
+
+            <!-- Vehicle list -->
+            <div id="vehicle-list" class="ui middle aligned divided list">
+            </div>
+        </section>
+    </main>
+    <footer class="fixed-bottom">
+        <div class="container text-right">
+            <p>© 2024 Automotive Retail E-commerce. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.7/lunr.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Check if token exists in session storage
+            const token = sessionStorage.getItem('token');
+            updateUI(token);
+
+            // Logout handler
+            $('#logout-link').click(function (e) {
+                e.preventDefault();
+                sessionStorage.removeItem('token');
+                window.location.href = "index.html";
+            });
+        });
+
+        // Function to update UI based on authentication state
+        function updateUI(token) {
+            if (token) {
+                console.log(token);
+                $('#login-link').hide();
+                $('#user-icon').show();
+                $('#dashboard-link').show();
+                $('#logout-link').show();
+            } else {
+                $('#login-link').show();
+                $('#user-icon').hide();
+                $('#dashboard-link').hide();
+                $('#logout-link').hide();
+            }
+        }
+    </script>
+
+    <script>
+        const VEHICLE_DATA = [
+            {
+                "vin": "1FAHP2F87F1234567",
+                "make": "ford",
+                "model": "fusion",
+                "modelYear": 2015,
+                "dealer": "Ford Town",
+                "zipcode": "22101"
+            },
+            {
+                "vin": "2FAFP71W06X123456",
+                "make": "ford",
+                "model": "focus",
+                "modelYear": 2006,
+                "dealer": "Ford Nation",
+                "zipcode": "21401"
+            },
+            {
+                "vin": "1FTEW1EPXJK765432",
+                "make": "ford",
+                "model": "f150",
+                "modelYear": 2018,
+                "dealer": "Go Ford",
+                "zipcode": "24564"
+            },
+            {
+                "vin": "1FT7W2BT0GE543210",
+                "make": "ford",
+                "model": "f250",
+                "modelYear": 2016,
+                "dealer": "Prime Ford",
+                "zipcode": "27601"
+            },
+            {
+                "vin": "1FAHP2F87F1234567",
+                "make": "ford",
+                "model": "fusion",
+                "modelYear": 2015,
+                "dealer": "Ford Town",
+                "zipcode": "22101"
+            },
+            {
+                "vin": "2FAFP71W06X123456",
+                "make": "ford",
+                "model": "focus",
+                "modelYear": 2006,
+                "dealer": "Ford Nation",
+                "zipcode": "21401"
+            },
+            // Add more objects...
+            {
+                "vin": "1FTEW1E88MFA12345",
+                "make": "ford",
+                "model": "f150",
+                "modelYear": 2021,
+                "dealer": "Go Ford",
+                "zipcode": "24564"
+            },
+            {
+                "vin": "1FT7W2BT0GE543210",
+                "make": "ford",
+                "model": "f250",
+                "modelYear": 2016,
+                "dealer": "Prime Ford",
+                "zipcode": "27601"
+            },
+            // Add more objects...
+            {
+                "vin": "1FTFW1EF6DF123456",
+                "make": "ford",
+                "model": "f150",
+                "modelYear": 2013,
+                "dealer": "Ford Square",
+                "zipcode": "33567"
+            },
+            {
+                "vin": "1FM5K8D87JGA54321",
+                "make": "ford",
+                "model": "explorer",
+                "modelYear": 2018,
+                "dealer": "Fusion Ford",
+                "zipcode": "22299"
+            }
+        ];
+
+
+        $(document).ready(function () {
+            // ... (Lunr index setup code has been removed) ...
+
+            function displayResults(query) {
+                const vehicleList = document.getElementById('vehicle-list');
+                vehicleList.innerHTML = '';
+
+                if (query === '') {
+                    // Pre-populate results on page load
+                    VEHICLE_DATA.forEach((doc) => {
+                        const listItem = document.createElement('div');
+                        listItem.classList.add('item');
+                        listItem.innerHTML += `
+          <div class="content">
+            <h3>VIN: ${doc.vin}</h3>
+            <div class="meta">
+              <p>Make: ${doc.make}</p>
+              <p>Model: ${doc.model}</p>
+              <p>Model Year: ${doc.modelYear}</p>
+              <p>Dealer: ${doc.dealer}</p>
+              <p>Zipcode: ${doc.zipcode}</p>
+            </div>
+          </div>
+        `;
+
+                        vehicleList.appendChild(listItem);
+                    });
+                } else {
+                    const filteredResults = VEHICLE_DATA.filter((doc) => {
+                        const queryLower = query.toLowerCase();
+                        return (
+                            doc.vin.toLowerCase().includes(queryLower) ||
+                            doc.make.toLowerCase().includes(queryLower) ||
+                            doc.model.toLowerCase().includes(queryLower) ||
+                            doc.dealer.toLowerCase().includes(queryLower) ||
+                            doc.zipcode.toString().includes(query)
+                        );
+                    });
+
+                    filteredResults.forEach((doc) => {
+                        const listItem = document.createElement('div');
+                        listItem.classList.add('item');
+                        listItem.innerHTML += `
+          <div class="content">
+            <h3>VIN: ${doc.vin}</h3>
+            <div class="meta">
+              <p>Make: ${doc.make}</p>
+              <p>Model: ${doc.model}</p>
+              <p>Model Year: ${doc.modelYear}</p>
+              <p>Dealer: ${doc.dealer}</p>
+              <p>Zipcode: ${doc.zipcode}</p>
+            </div>
+          </div>
+        `;
+
+                        vehicleList.appendChild(listItem);
+                    });
+                }
+            }
+
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+
+            searchButton.addEventListener('click', () => {
+                const query = searchInput.value;
+                displayResults(query);
+            });
+
+            // Pre-populate results on page load
+            displayResults('');
+        });
+
+
+    </script>
+</body>
+
+</html>
